@@ -84,11 +84,11 @@ Reference: <br/><code>@article{}
   <th align="center">Methods</th>
   <th align="center">Noisy input</th>
   <th align="center">Baseline 1: Basic</th>
-  <th align="center">Baseline 2: HAMSE<sub>ID</sub></th>
+  <th align="center">Baseline 2: HAMSE</th>
   <th align="center">2CEM20</th>
   <th align="center">adpCEM20</th>
   <th align="center">maskCEM50</th>
-  <th align="center">maskadpCEM50</th>
+  <th align="center">clean ref</th>
 </tr>
 </thead>
 <tbody>
@@ -125,34 +125,34 @@ function topFunction() {
 
 
 var filenames = [
-'CafetariaNoise',
-// '118394_mrjr0_sx282_16khz+Outside_Traffic_Road_16khz_hp+SNR=5',
-// 'mic_F09_sx363_cut_cafe_-5dB',
-// '47929_mchh0_sx284_16khz+CAFE2+SNR=0',
-// '125684_fdrw0_sx383_16khz+CAFE1+SNR=5',
-// 'F01_sx3+pink+SNR=10',
-// 'F09_sx363+crowd+SNR=10',
-// '2604_mic_F06_sx259_16khz_hp+volvo_clilp_16khz_hp+SNR=-5',
+'124848_fdrw0_si1283_16khz+CAFE2+SNR=-5',
+'2604_mic_F06_sx259_16khz_hp+volvo_clilp_16khz_hp+SNR=-5',
+'41790_fjem0_sx94_16khz+STREET2+SNR=-5',
+'137809_msfh1_sa1_16khz+CAFE2+SNR=0',
+'113413_fjsj0_sx404_16khz+LIVINGROOM3+SNR=0',
+'125684_fdrw0_sx383_16khz+CAFE1+SNR=5',
+'120098_mdsc0_si967_16khz+Midsize_Car2_100Kmh_16khz_hp+SNR=5',
+'138729_fgmd0_sx323_16khz+CITY2+SNR=10',
 ];
 
 var methods = [
-'_0noisy',
+'_1noisy',
 '_basic',
 '_hamse',
 '_2cem20',
-'_adpcem20',
+'_acfcem20final',
 '_maskcem50',
-'_maskadpcem50'
+'_clean'
 ];
 var info = [
-'Cafetaria, SNR=0',
-// 'Traffic, SNR=5',
-// 'Cafe, SNR=-5',
-// 'Cafe, SNR=0',
-// 'Cafe, SNR=5',
-// 'Pink, SNR=10',
-// 'Crowd, SNR=10',
-// 'Car, SNR=-5',
+'Cafe, SNR=-5',
+'Car, SNR=-5*',
+'Street, SNR=-5',
+'Cafe, SNR=0',
+'Living Room, SNR=0',
+'Cafe, SNR=5*',
+'Car, SNR=5',
+'City, SNR=10',
 ];
 
 const elementWidth = '250';

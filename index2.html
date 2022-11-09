@@ -1,0 +1,293 @@
+<html lang="en">
+
+<head>
+<title>Audio Samples</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<style>
+  .logo{
+    margin-left: 5px;
+    float: left;
+  }
+  
+  .banner{
+    color: #3265C2;
+    margin-left: 2%;
+    /*margin-bottom: 0;*/
+    float: left;
+  }
+
+  .closer { 
+    line-height: 10px;
+  }
+
+  .row:after {
+    content: "";
+    display: flex;
+    clear: both;
+  }
+
+  .case{
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  body {
+    margin: 20;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #topBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #555;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+  }
+
+  #topBtn:hover {
+    background-color: #3265C2;
+  }
+  
+  table {
+    border-collapse: collapse;
+  }
+  
+  th {
+    align: center;
+	background-color: #3265C2;
+	color: white;
+	height: 30px;
+  }
+  
+  tr {
+    border-bottom: 2px solid black;
+  }
+  
+  .original {
+    transform: scale(1);
+    position: inherit;
+    z-index: 0;
+  }
+  
+  .enlarged {
+    transform: scale(2);
+    position: relative;
+    z-index: 100;
+  }
+
+</style>
+</head>
+
+<body>
+
+<button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
+
+<div>
+   <div class="row">
+    <div class="logo"><img src=".\img\logo_ugent_nl.svg"></div>
+    <div class="banner">
+      <h1 class="closer">ASPIRE@IDLAB</h1>
+      <p class="closer" style="font-size: 80%;">Audio and Signal Processing, Interpretation, and Enhancement</p>
+    </div>
+  </div>
+
+</div>
+
+<div>
+  <h3>Audio samples </h3>
+  <div>
+
+    This is the sample page for our submission <em>'Aiding speech harmonic recovery in DNN-based single channel noise reduction using cepstral excitation manipulation (CEM) components'</em> to ICASSP 2023.<br/>
+    <!-- Reference: <br/>
+    <code>@article{}
+    </code>
+    <br/> -->
+    <br/>
+    
+    All samples have been rescaled to –26 dBov individually based on the active speech level (ASL). <br/>
+    <br/>
+
+    The samples presented in this page are processed by:
+    <ul>
+      <li><strong>Baseline 1: Basic</strong>: CRUSE net [1] predicting log-mask, all the following networks have the same architecture and training target;</li>
+      <li><strong>Baseline 2: HAMSE</strong>: Trained with the loss function proposed in [2];</li>
+      <li><strong>2CEM</strong>: Trained with the proposed CEM loss on the spectral estimate, &beta;=20;</li>
+      <li><strong>adpCEM</strong>: Trained with the proposed CEM loss on the spectral estimate with an adaptive &beta;;</li>
+      <li><strong>maskCEM</strong>: Trained with the proposed CEM loss on the mask estimate, &beta;=50;</li>
+      <!-- <li><strong>adpmaskCEM</strong>: Trained with the proposed CEM loss on the mask estimate with an adaptive &beta;</li> -->
+    </ul>
+	<br/>
+  
+  </div>
+	
+  <div>
+    <p style="color:#003366; list-style-type:disc; font-size=8; font-style: italic;">
+	  Hover your mouse on the spectrogram to check the noisy input. <br/>
+	  Click the spectrogram to enlarge/reset it.
+    </p>
+	
+    <table class="tb" id="samples" style="margin-top:10px; margin-bottom:20px;">
+      <thead>
+      <tr>
+        <th>Methods</th>
+        <th>Noisy input</th>
+        <th>Baseline 1: Basic</th>
+        <th>Baseline 2: HAMSE</th>
+        <th>2CEM</th>
+        <th>adpCEM</th>
+        <th>maskCEM</th>
+        <!-- <th>adpmaskCEM</th> -->
+        <th>Clean ref</th>
+      </tr>
+      </thead>
+    <tbody>
+    </tbody>
+	</table>
+  </div>
+
+  <!-- <br/> -->
+
+
+
+<h4>References</h4>
+<div style='font-size: 12;'>
+  <ol>
+    <li style="font-family: 'Times New Roman'">
+      S. Braun, H. Gamper, C. K. Reddy, and I. Tashev, “Towards efficient models for real-time deep noise suppression,” in <em>ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>. IEEE, 2021, pp.656–660.
+    </li>
+    
+    <li style="font-family: 'Times New Roman'">
+      N. Raviv, O. Schwartz, and S. Gannot, “Low resources online single-microphone speech enhancement with harmonic emphasis,” in <em>ICASSP 2022-2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)</em>. IEEE, 2022, pp. 8807–8811.
+    </li>
+  </ol>
+</div>
+
+<br/>
+
+<script>
+
+// Top button
+//Get the button
+var mybutton = document.getElementById("topBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+// show the noisy
+function showNoisy(img) {
+  var end = img.src.split('_');
+  var end = end[end.length-1];
+  img.src = img.src.replace(end, '1noisy.png');
+}
+
+// show the original
+function showOriginal(img) {
+  img.src = img.src.replace('_1noisy.png', img.method+'.png');
+}
+
+function enlargeImg(img) {
+  if (img.className != 'enlarged'){
+    // enlarge the image
+    img.src = img.src.replace('_1noisy.png', img.method+'.png');
+	img.className='enlarged';
+  } else {
+    // reset
+    img.className='original';
+  }
+  // Animation effect
+  img.style.transition = "transform 0.25s ease";
+}
+
+var methods = [
+'_1noisy',
+'_basic',
+'_hamse',
+'_2cem20',
+'_acfcem20final',
+'_maskcem50',
+//'_maskacfcem50final',
+'_clean'
+];
+
+var filenames = [
+'41790_fjem0_sx94_16khz+STREET2+SNR=-5',
+'2604_mic_F06_sx259_16khz_hp+volvo_clilp_16khz_hp+SNR=-5',
+// '124848_fdrw0_si1283_16khz+CAFE2+SNR=-5',
+// '137809_msfh1_sa1_16khz+CAFE2+SNR=0',
+'61124_mdvc0_sx36_16khz+CAFE1+SNR=5',
+'125684_fdrw0_sx383_16khz+CAFE1+SNR=5',
+// '138728_fgmd0_sx323_16khz+CITY2+SNR=5',
+'2605_mic_F06_sx259_16khz_hp+volvo_clilp_16khz_hp+SNR=0',
+'138729_fgmd0_sx323_16khz+CITY2+SNR=10',
+];
+
+var info = [
+'Street, SNR=-5',
+'Car, SNR=-5', //*
+// 'Cafe, SNR=-5',
+// 'Cafe, SNR=0',
+'Cafe, SNR=5',
+'Cafe, SNR=5', //*
+// 'City, SNR=5',
+'Car, SNR=0',
+'City, SNR=10',
+];
+
+const elementWidth = '250';
+
+var tbody = document.getElementById("samples");
+for (var i in filenames) {
+    var tr = document.createElement('tr');   
+    tbody.appendChild(tr);
+    var td = document.createElement('td');
+    td.align="center";
+    td.innerHTML = info[i];
+    tr.appendChild(td);
+    for (var j in methods) {
+      var td = document.createElement('td');
+      td.width = elementWidth;
+      tr.appendChild(td);
+      var img = document.createElement("img");
+      img.src = './img/'+filenames[i]+methods[j]+'.png';
+      img.method = methods[j];
+      img.onmouseover = function() {showNoisy(this)};
+      img.onmouseout= function() {showOriginal(this)};
+	  img.onclick = function () {enlargeImg(this)};
+      img.width= elementWidth;
+      td.appendChild(img);
+      var audio = document.createElement("audio");
+      audio.src ='./audio/'+filenames[i]+methods[j]+'.wav';
+      audio.controls = true;
+      td.appendChild(audio);
+      audio.style.width = elementWidth;
+
+    }
+    
+}
+
+</script>
+
+</body>
